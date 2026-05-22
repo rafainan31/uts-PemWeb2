@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "Beckend_Invofest/src/index.ts",
+      "src": "src/index.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "Beckend_Invofest/src/index.ts"
+      "dest": "/src/index.ts"
     }
   ]
 }
