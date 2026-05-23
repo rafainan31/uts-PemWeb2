@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app";
+export const API_BASE_URL = "https://uts-backend-kappa.vercel.app";
