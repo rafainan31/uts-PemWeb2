@@ -14,11 +14,11 @@ app.get("/", (req, res) => {
   res.send("Backend berhasil jalan di Vercel!");
 });
 
-app.use("/events", eventRoute);
-app.use("/categories", categoryRoute);
+// app.use("/events", eventRoute);
+// app.use("/categories", categoryRoute);
 
-// biar dua-duanya bisa dipakai
-app.use("/speakers", pembicaraRoute);
-app.use("/pembicara", pembicaraRoute);
+// // biar dua-duanya bisa dipakai
+// app.use("/speakers", pembicaraRoute);
+// app.use("/pembicara", pembicaraRoute);
 
 export default app;
