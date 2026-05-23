@@ -8,6 +8,25 @@ import pembicaraRoute from "../src/routes/pembicaraRoute.js";
 const app = express();
 
 app.use(cors());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -15,9 +34,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/events", eventRoute);
+app.use("/Events", eventRoute);
+
 app.use("/categories", categoryRoute);
 
-// dua-duanya dibuat aktif supaya frontend lama atau baru tetap jalan
 app.use("/speakers", pembicaraRoute);
 app.use("/pembicara", pembicaraRoute);
 
