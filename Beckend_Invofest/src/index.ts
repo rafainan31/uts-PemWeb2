@@ -15,12 +15,10 @@ app.use(
       "https://uts-pem-web2-f4g7-dxgk05z1f-rafainan31s-projects.vercel.app",
       "https://invofest2026.vercel.app",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.options("*", cors());
 
 app.use(express.json());
 
@@ -30,13 +28,7 @@ app.get("/", (req, res) => {
 
 app.use("/events", eventRoute);
 app.use("/categories", categoryRoute);
-
-// PILIH SALAH SATU
-// Kalau frontend kamu pakai /speakers, gunakan ini:
 app.use("/speakers", pembicaraRoute);
-
-// Kalau frontend kamu pakai /pembicara, gunakan ini:
-// app.use("/pembicara", pembicaraRoute);
 
 if (process.env.NODE_ENV !== "production") {
   app.listen(port, () => {
