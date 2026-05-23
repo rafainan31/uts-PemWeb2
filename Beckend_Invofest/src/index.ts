@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/",(req, res) => {
-    res.send("Ambagar!");
+    res.send("Backend berhasil jalan di Vercel!");
 });
 
 app.use("/events", eventRoute);
