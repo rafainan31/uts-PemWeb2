@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../../service/Api";
 
 interface Category {
   id: number;
@@ -13,7 +14,7 @@ export default function CategoryIndex() {
   const getCategories = async () => {
     try {
       const response = await fetch(
-        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/categories"
+        `${API_BASE_URL}/categories`
       );
 
       const data = await response.json();
@@ -40,12 +41,9 @@ export default function CategoryIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(
-        `https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/categories/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/categories/${id}`, {
+        method: "DELETE",
+      });
 
       const result = await response.json();
 

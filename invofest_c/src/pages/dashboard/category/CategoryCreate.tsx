@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button";
 import { InputText } from "../../../components/ui/InputText";
+import { API_BASE_URL } from "../../../service/Api";
 
 type FormData = {
   name: string;
@@ -20,7 +21,7 @@ export default function CategoryCreate() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(
-        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/categories",
+        `${API_BASE_URL}/categories`,
         {
           method: "POST",
           headers: {
