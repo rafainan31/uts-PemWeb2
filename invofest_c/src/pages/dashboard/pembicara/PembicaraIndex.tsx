@@ -72,15 +72,15 @@ export default function PembicaraIndex() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {pembicara.map((item) => (
             <div key={item.id} className="flex flex-col items-center">
-              <div className="w-full max-w-[280px] bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="w-full max-w-70 bg-white rounded-2xl shadow-lg overflow-hidden">
                 {item.image ? (
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-[300px] object-cover"
+                    className="w-full h-75 object-cover"
                   />
                 ) : (
-                  <div className="w-full h-[300px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  <div className="w-full h-75 bg-gray-200 flex items-center justify-center text-gray-500">
                     No Image
                   </div>
                 )}

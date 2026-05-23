@@ -41,7 +41,7 @@ export default function PembicaraUpdate() {
 
     const onSubmit = async (data: SpeakerForm) => {
   try {
-    const response = await fetch(`http://localhost:3000/speakers/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/speakers/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
