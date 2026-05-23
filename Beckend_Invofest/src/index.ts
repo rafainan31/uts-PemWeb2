@@ -8,7 +8,20 @@ import pembicaraRoute from "../src/routes/pembicaraRoute.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://uts-pem-web2-f4g7-dxgk05z1f-rafainan31s-projects.vercel.app",
+      "https://invofest2026.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.options("*", cors());
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -17,9 +30,14 @@ app.get("/", (req, res) => {
 
 app.use("/events", eventRoute);
 app.use("/categories", categoryRoute);
-app.use("/pembicara", pembicaraRoute);
 
-// app.listen hanya untuk lokal, bukan untuk Vercel
+// PILIH SALAH SATU
+// Kalau frontend kamu pakai /speakers, gunakan ini:
+app.use("/speakers", pembicaraRoute);
+
+// Kalau frontend kamu pakai /pembicara, gunakan ini:
+// app.use("/pembicara", pembicaraRoute);
+
 if (process.env.NODE_ENV !== "production") {
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
