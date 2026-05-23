@@ -26,7 +26,7 @@ export default function CategoryUpdate() {
     const getCategory = async () => {
       try {
         const response = await fetch(
-          `https://uts-backend-kappa.vercel.app/categories/${id}`
+          `https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/categories/${id}`
         );
 
         const data = await response.json();
@@ -48,7 +48,7 @@ export default function CategoryUpdate() {
   const onSubmit = async (data: CategoryForm) => {
     try {
       const response = await fetch(
-        `https://uts-backend-kappa.vercel.app/categories/${id}`,
+        `https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/categories/${id}`,
         {
           method: "PUT",
           headers: {
