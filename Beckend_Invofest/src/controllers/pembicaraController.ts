@@ -1,15 +1,19 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/db.js";
 
-// GET ALL
+// GET ALL PEMBICARA / SPEAKER
 export const getPembicara = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const pembicara = await prisma.speaker.findMany();
+    const speakers = await prisma.speaker.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-    res.json(pembicara);
+    res.json(speakers);
   } catch (error) {
     console.log(error);
 
@@ -19,7 +23,7 @@ export const getPembicara = async (
   }
 };
 
-// CREATE
+// CREATE PEMBICARA / SPEAKER
 export const createPembicara = async (
   req: Request,
   res: Response
@@ -27,13 +31,13 @@ export const createPembicara = async (
   try {
     const { name, role, image } = req.body;
 
-    if (!name || !role) {
+    if (!name || !role || !image) {
       return res.status(400).json({
-        message: "Name dan role harus diisi",
+        message: "Nama, role, dan image harus diisi",
       });
     }
 
-    const pembicara = await prisma.speaker.create({
+    const speaker = await prisma.speaker.create({
       data: {
         name,
         role,
@@ -43,7 +47,7 @@ export const createPembicara = async (
 
     res.status(201).json({
       message: "Pembicara berhasil dibuat",
-      pembicara,
+      data: speaker,
     });
   } catch (error) {
     console.log(error);
@@ -54,7 +58,7 @@ export const createPembicara = async (
   }
 };
 
-// GET BY ID
+// GET PEMBICARA BY ID
 export const showPembicara = async (
   req: Request,
   res: Response
@@ -62,19 +66,19 @@ export const showPembicara = async (
   try {
     const id = Number(req.params.id);
 
-    const pembicara = await prisma.speaker.findUnique({
+    const speaker = await prisma.speaker.findUnique({
       where: {
         id,
       },
     });
 
-    if (!pembicara) {
+    if (!speaker) {
       return res.status(404).json({
         message: "Pembicara tidak ditemukan",
       });
     }
 
-    res.json(pembicara);
+    res.json(speaker);
   } catch (error) {
     console.log(error);
 
@@ -84,7 +88,7 @@ export const showPembicara = async (
   }
 };
 
-// UPDATE
+// UPDATE PEMBICARA / SPEAKER
 export const updatePembicara = async (
   req: Request,
   res: Response
@@ -94,7 +98,13 @@ export const updatePembicara = async (
 
     const { name, role, image } = req.body;
 
-    const pembicara = await prisma.speaker.update({
+    if (!name || !role || !image) {
+      return res.status(400).json({
+        message: "Nama, role, dan image harus diisi",
+      });
+    }
+
+    const speaker = await prisma.speaker.update({
       where: {
         id,
       },
@@ -107,7 +117,7 @@ export const updatePembicara = async (
 
     res.json({
       message: "Pembicara berhasil diupdate",
-      pembicara,
+      data: speaker,
     });
   } catch (error) {
     console.log(error);
@@ -118,7 +128,7 @@ export const updatePembicara = async (
   }
 };
 
-// DELETE
+// DELETE PEMBICARA / SPEAKER
 export const deletePembicara = async (
   req: Request,
   res: Response
@@ -139,7 +149,7 @@ export const deletePembicara = async (
     console.log(error);
 
     res.status(500).json({
-      message: "Gagal delete pembicara",
+      message: "Gagal hapus pembicara",
     });
   }
 };

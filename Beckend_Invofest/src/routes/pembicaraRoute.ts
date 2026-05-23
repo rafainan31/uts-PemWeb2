@@ -1,5 +1,12 @@
 import express from "express";
-import { createPembicara, deletePembicara, getPembicara, showPembicara, updatePembicara } from "../controllers/pembicaraController.js";
+
+import {
+  createPembicara,
+  deletePembicara,
+  getPembicara,
+  showPembicara,
+  updatePembicara,
+} from "../controllers/pembicaraController.js";
 
 const router = express.Router();
 

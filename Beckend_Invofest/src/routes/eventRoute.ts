@@ -1,19 +1,19 @@
 import express from "express";
 
 import {
-  createPembicara,
-  deletePembicara,
-  getPembicara,
-  showPembicara,
-  updatePembicara,
-} from "../controllers/pembicaraController.js";
+  getEvents,
+  createEvent,
+  getEventById,
+  deleteEvent,
+  updateEvent,
+} from "../controllers/evenController.js"; 
 
 const router = express.Router();
 
-router.get("/", getPembicara);
-router.post("/", createPembicara);
-router.get("/:id", showPembicara);
-router.put("/:id", updatePembicara);
-router.delete("/:id", deletePembicara);
+router.get("/", getEvents);
+router.post("/", createEvent);
+router.get("/:id", getEventById);
+router.put("/:id", updateEvent);
+router.delete("/:id", deleteEvent);
 
 export default router;
