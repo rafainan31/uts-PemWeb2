@@ -13,7 +13,7 @@ export default function PembicaraIndex() {
 
   const getPembicara = async () => {
     try {
-      const response = await fetch("https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/speakers");
+      const response = await fetch("https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/pembicara");
 
       const data = await response.json();
 
@@ -34,7 +34,7 @@ export default function PembicaraIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/speakers/${id}`, {
+      const response = await fetch(`https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/pembicara/${id}`, {
         method: "DELETE",
       });
 

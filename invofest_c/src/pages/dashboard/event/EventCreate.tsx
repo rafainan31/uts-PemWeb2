@@ -66,7 +66,7 @@ export default function EventCreate() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(
-        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/events",
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/Events",
         {
           method: "POST",
           headers: {

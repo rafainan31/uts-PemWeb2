@@ -16,7 +16,7 @@ export default function EventIndex() {
   const getEvents = async () => {
     try {
       const response = await fetch(
-        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/events"
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/Events"
       );
 
       const data = await response.json();
