@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { API_BASE_URL } from "../../../service/Api";
 
 interface Pembicara {
   id: number;
@@ -14,7 +13,7 @@ export default function PembicaraIndex() {
 
   const getPembicara = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/speakers`);
+      const response = await fetch("https://uts-backend-kappa.vercel.app/pembicara");
 
       const data = await response.json();
 
@@ -35,7 +34,7 @@ export default function PembicaraIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/speakers/${id}`, {
+      const response = await fetch(`https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/pembicara/${id}`, {
         method: "DELETE",
       });
 
@@ -91,7 +90,9 @@ export default function PembicaraIndex() {
                     {item.name}
                   </h2>
 
-                  <p className="text-gray-500 mt-2">{item.role}</p>
+                  <p className="text-gray-500 mt-2">
+                    {item.role}
+                  </p>
                 </div>
               </div>
 
@@ -115,7 +116,9 @@ export default function PembicaraIndex() {
         </div>
       ) : (
         <div className="bg-white border rounded-2xl p-10 text-center">
-          <h2 className="text-lg font-semibold">Belum ada pembicara</h2>
+          <h2 className="text-lg font-semibold">
+            Belum ada pembicara
+          </h2>
         </div>
       )}
     </div>

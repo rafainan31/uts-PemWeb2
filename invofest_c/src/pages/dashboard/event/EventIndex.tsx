@@ -17,7 +17,7 @@ export default function EventIndex() {
 
   const getEvents = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/events`);
+      const response = await fetch(`${API_BASE_URL}/Events`);
 
       const data = await response.json();
 
@@ -38,7 +38,7 @@ export default function EventIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/Events/${id}`, {
         method: "DELETE",
       });
 
