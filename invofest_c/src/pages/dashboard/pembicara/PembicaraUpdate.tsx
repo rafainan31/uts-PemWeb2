@@ -23,7 +23,7 @@ export default function PembicaraUpdate() {
     } = useForm<SpeakerForm>();
 
     useEffect(() => {
-        fetch(`https://uts-backend-kappa.vercel.app/speakers${id}`)
+        fetch(`https://uts-backend-kappa.vercel.app/pembicara${id}`)
             .then((res) => res.json())
             .then((data) => {
                 const speaker = data.data ?? data;
@@ -41,7 +41,7 @@ export default function PembicaraUpdate() {
 
     const onSubmit = async (data: SpeakerForm) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/speakers/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/pembicara/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

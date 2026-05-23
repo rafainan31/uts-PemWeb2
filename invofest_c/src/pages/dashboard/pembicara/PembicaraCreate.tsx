@@ -23,7 +23,7 @@ export default function PembicaraCreate() {
   const onSubmit = async (data: FormDataType) => {
     try {
       const response = await fetch(
-        "https://uts-backend-kappa.vercel.app/speakers",
+        "https://uts-backend-kappa.vercel.app/pembicara",
         {
           method: "POST",
           headers: {
