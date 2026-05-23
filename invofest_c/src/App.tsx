@@ -21,7 +21,7 @@ import BiodataIndex from "./pages/dashboard/BiodataIndex";
 import CategoryUpdate from "./pages/dashboard/category/CategoryUpdate";
 import PembicaraUpdate from "./pages/dashboard/pembicara/PembicaraUpdate";
 import EventUpdate from "./pages/dashboard/event/EventUpdate";
-import { useEffect, useState } from "react";
+
 
 function App() {
   return (
