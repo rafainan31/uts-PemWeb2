@@ -6,16 +6,8 @@ import categoryRoute from "../src/routes/categoryRoute.js";
 import pembicaraRoute from "../src/routes/pembicaraRoute.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -24,12 +16,9 @@ app.get("/", (req, res) => {
 
 app.use("/events", eventRoute);
 app.use("/categories", categoryRoute);
-app.use("/speakers", pembicaraRoute);
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
-}
+// biar dua-duanya bisa dipakai
+app.use("/speakers", pembicaraRoute);
+app.use("/pembicara", pembicaraRoute);
 
 export default app;
