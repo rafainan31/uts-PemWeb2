@@ -48,7 +48,7 @@ export default function CategoryUpdate() {
   const onSubmit = async (data: CategoryForm) => {
     try {
       const response = await fetch(
-        `https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/categories/${id}`,
+        `https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/categories/${id}`,
         {
           method: "PUT",
           headers: {

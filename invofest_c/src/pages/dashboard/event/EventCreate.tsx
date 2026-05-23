@@ -41,7 +41,7 @@ export default function EventCreate() {
 
   // GET SPEAKERS
   useEffect(() => {
-    fetch("https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/pembicara")
+    fetch("https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/pembicara")
       .then((res) => res.json())
       .then((data) => {
         setSpeakers(data);
@@ -53,7 +53,7 @@ export default function EventCreate() {
 
   // GET CATEGORIES
   useEffect(() => {
-    fetch("https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/categories")
+    fetch("https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
@@ -66,7 +66,7 @@ export default function EventCreate() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(
-        "https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/Events",
+        "https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/Events",
         {
           method: "POST",
           headers: {
