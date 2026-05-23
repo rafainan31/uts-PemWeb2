@@ -42,7 +42,7 @@ export default function EventIndex() {
 
     try {
       const response = await fetch(
-        `https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/${id}`,
+        `https://uts-backend-kappa.vercel.app/Events${id}`,
         {
           method: "DELETE",
         }
