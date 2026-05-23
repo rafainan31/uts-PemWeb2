@@ -23,7 +23,7 @@ export default function PembicaraUpdate() {
     } = useForm<SpeakerForm>();
 
     useEffect(() => {
-        fetch(`https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/pembicara/${id}`)
+        fetch(`${API_BASE_URL}/pembicara/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 const speaker = data.data ?? data;

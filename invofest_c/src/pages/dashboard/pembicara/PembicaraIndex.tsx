@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../../service/Api";
 
 interface Pembicara {
   id: number;
@@ -13,7 +14,7 @@ export default function PembicaraIndex() {
 
   const getPembicara = async () => {
     try {
-      const response = await fetch("https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/pembicara");
+      const response = await fetch(`${API_BASE_URL}/pembicara`);
 
       const data = await response.json();
 
@@ -34,7 +35,7 @@ export default function PembicaraIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/pembicara/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/pembicara/${id}`, {
         method: "DELETE",
       });
 

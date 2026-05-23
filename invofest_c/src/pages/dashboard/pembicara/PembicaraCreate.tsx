@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button";
 import { InputText } from "../../../components/ui/InputText";
+import  {API_BASE_URL}  from "../../../service/Api";
+
 
 type FormDataType = {
   id: string;
@@ -23,7 +25,7 @@ export default function PembicaraCreate() {
   const onSubmit = async (data: FormDataType) => {
     try {
       const response = await fetch(
-        "https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/pembicara",
+        `${API_BASE_URL}/pembicara`,
         {
           method: "POST",
           headers: {

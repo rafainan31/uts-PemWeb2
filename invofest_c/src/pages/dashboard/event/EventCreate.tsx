@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button";
 import { InputText } from "../../../components/ui/InputText";
+import  {API_BASE_URL}  from "../../../service/Api";
 
 type FormData = {
   eventName: string;
@@ -41,7 +42,7 @@ export default function EventCreate() {
 
   // GET SPEAKERS
   useEffect(() => {
-    fetch("https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/pembicara")
+    fetch(`${API_BASE_URL}/pembicara`)
       .then((res) => res.json())
       .then((data) => {
         setSpeakers(data);
@@ -53,7 +54,7 @@ export default function EventCreate() {
 
   // GET CATEGORIES
   useEffect(() => {
-    fetch("https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/categories")
+    fetch(`${API_BASE_URL}/categories`)
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
@@ -66,7 +67,7 @@ export default function EventCreate() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(
-        "https://uts-backend-jnrr9v10y-rafainan31s-projects.vercel.app/Events",
+        `${API_BASE_URL}/events`,
         {
           method: "POST",
           headers: {
