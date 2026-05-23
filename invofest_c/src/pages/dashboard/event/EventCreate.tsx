@@ -41,7 +41,7 @@ export default function EventCreate() {
 
   // GET SPEAKERS
   useEffect(() => {
-    fetch("https://uts-backend-kappa.vercel.app/pembicara")
+    fetch("https://uts-backend-kappa.vercel.app/speakers")
       .then((res) => res.json())
       .then((data) => {
         setSpeakers(data);

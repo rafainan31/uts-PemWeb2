@@ -34,7 +34,7 @@ export default function PembicaraIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`https://uts-backend-kappa.vercel.app/pembicara/${id}`, {
+      const response = await fetch(`https://uts-backend-kappa.vercel.app/speakers/${id}`, {
         method: "DELETE",
       });
 
