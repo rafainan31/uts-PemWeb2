@@ -72,7 +72,7 @@ export default function EventUpdate() {
 
   const onSubmit = async (data: EventForm) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+      const response = await fetch(`https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/events/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button";
@@ -20,7 +20,7 @@ export default function CategoryCreate() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/categories",
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/categories",
         {
           method: "POST",
           headers: {

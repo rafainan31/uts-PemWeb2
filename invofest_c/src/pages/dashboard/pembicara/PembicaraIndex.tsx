@@ -13,7 +13,7 @@ export default function PembicaraIndex() {
 
   const getPembicara = async () => {
     try {
-      const response = await fetch("http://localhost:3000/speakers");
+      const response = await fetch("https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/speakers");
 
       const data = await response.json();
 

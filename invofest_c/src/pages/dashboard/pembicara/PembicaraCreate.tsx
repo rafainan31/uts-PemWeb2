@@ -23,7 +23,7 @@ export default function PembicaraCreate() {
   const onSubmit = async (data: FormDataType) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/speakers",
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/speakers",
         {
           method: "POST",
           headers: {

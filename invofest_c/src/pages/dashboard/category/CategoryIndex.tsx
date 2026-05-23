@@ -13,7 +13,7 @@ export default function CategoryIndex() {
   const getCategories = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/categories"
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app//categories"
       );
 
       const data = await response.json();
@@ -41,7 +41,7 @@ export default function CategoryIndex() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/categories/${id}`,
+        `https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/categories/${id}`,
         {
           method: "DELETE",
         }

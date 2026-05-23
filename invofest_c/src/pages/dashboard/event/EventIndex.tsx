@@ -16,7 +16,7 @@ export default function EventIndex() {
   const getEvents = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/events"
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/events"
       );
 
       const data = await response.json();
@@ -42,7 +42,7 @@ export default function EventIndex() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/events/${id}`,
+        `https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/${id}`,
         {
           method: "DELETE",
         }
