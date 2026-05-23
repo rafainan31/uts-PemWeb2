@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../../service/Api";
 
 type Event = {
   id: number;
-  title: string;
-  category: string;
-  date: string;
+  name: string;
+  categoryId: number;
   location: string;
-  image: string;
+  dateEvent: string;
+  description: string;
+  createdAt?: string;
 };
 
 export default function EventIndex() {
@@ -15,16 +17,13 @@ export default function EventIndex() {
 
   const getEvents = async () => {
     try {
-      const response = await fetch(
-        "https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/Events"
-      );
+      const response = await fetch(`${API_BASE_URL}/events`);
 
       const data = await response.json();
 
       setEvents(Array.isArray(data) ? data : data.data);
     } catch (error) {
       console.log(error);
-
       alert("Gagal mengambil data event");
     }
   };
@@ -34,19 +33,14 @@ export default function EventIndex() {
   }, []);
 
   const handleDelete = async (id: number) => {
-    const confirmDelete = confirm(
-      "Yakin ingin menghapus event ini?"
-    );
+    const confirmDelete = confirm("Yakin ingin menghapus event ini?");
 
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(
-        `https://uts-backend-2jf0nithe-rafainan31s-projects.vercel.app/Events/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+        method: "DELETE",
+      });
 
       const result = await response.json();
 
@@ -56,11 +50,9 @@ export default function EventIndex() {
       }
 
       alert(result.message || "Event berhasil dihapus");
-
       getEvents();
     } catch (error) {
       console.log(error);
-
       alert("Event gagal dihapus");
     }
   };
@@ -69,13 +61,8 @@ export default function EventIndex() {
     <div className="p-8 min-h-screen">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold">
-            Event
-          </h1>
-
-          <p>
-            Daftar event yang tersedia
-          </p>
+          <h1 className="text-3xl font-bold">Event</h1>
+          <p>Daftar event yang tersedia</p>
         </div>
 
         <Link
@@ -93,40 +80,29 @@ export default function EventIndex() {
               key={event.id}
               className="bg-white border rounded-2xl p-5 flex justify-between items-center"
             >
-              <div className="flex items-center gap-4">
-                {event.image ? (
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-20 h-20 rounded-xl object-cover border"
-                  />
-                ) : (
-                  <div className="w-20 h-20 rounded-xl bg-gray-200 flex items-center justify-center text-gray-500">
-                    No
-                  </div>
-                )}
+              <div>
+                <h2 className="text-lg font-semibold">{event.name}</h2>
 
-                <div>
-                  <h2 className="text-lg font-semibold">
-                    {event.title}
-                  </h2>
+                <p className="text-gray-500">
+                  Category ID : {event.categoryId}
+                </p>
 
-                  <p className="text-gray-500">
-                    Category : {event.category}
-                  </p>
+                <p className="text-gray-500">
+                  Tanggal :{" "}
+                  {new Date(event.dateEvent).toLocaleDateString("id-ID")}
+                </p>
 
-                  <p className="text-gray-500">
-                    Date : {event.date}
-                  </p>
+                <p className="text-gray-500">
+                  Lokasi : {event.location}
+                </p>
 
-                  <p className="text-gray-500">
-                    Location : {event.location}
-                  </p>
+                <p className="text-gray-500">
+                  Deskripsi : {event.description}
+                </p>
 
-                  <p className="text-sm text-gray-400">
-                    Event ID : {event.id}
-                  </p>
-                </div>
+                <p className="text-sm text-gray-400">
+                  Event ID : {event.id}
+                </p>
               </div>
 
               <div className="flex gap-3">
@@ -148,10 +124,7 @@ export default function EventIndex() {
           ))
         ) : (
           <div className="bg-white border rounded-2xl p-10 text-center">
-            <h2 className="text-lg font-semibold">
-              Belum ada event
-            </h2>
-
+            <h2 className="text-lg font-semibold">Belum ada event</h2>
             <p className="text-gray-400 mt-2">
               Silakan tambahkan event baru
             </p>
