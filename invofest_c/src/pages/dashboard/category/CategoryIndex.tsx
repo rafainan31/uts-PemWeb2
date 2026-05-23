@@ -13,7 +13,7 @@ export default function CategoryIndex() {
   const getCategories = async () => {
     try {
       const response = await fetch(
-        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app//categories"
+        "https://uts-backend-197igdykg-rafainan31s-projects.vercel.app/categories"
       );
 
       const data = await response.json();
