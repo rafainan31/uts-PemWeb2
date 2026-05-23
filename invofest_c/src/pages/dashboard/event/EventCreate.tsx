@@ -4,19 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button";
 import { InputText } from "../../../components/ui/InputText";
-import  {API_BASE_URL}  from "../../../service/Api";
+import { API_BASE_URL } from "../../../service/Api";
 
 type FormData = {
-  eventName: string;
-  speaker: string;
-  category: string;
-  date: string;
-  time: string;
-};
-
-type Speaker = {
-  id: number;
   name: string;
+  categoryId: string;
+  location: string;
+  dateEvent: string;
+  description: string;
 };
 
 type Category = {
@@ -27,30 +22,13 @@ type Category = {
 export default function EventCreate() {
   const navigate = useNavigate();
 
-  const [speakers, setSpeakers] = useState<
-    Speaker[]
-  >([]);
-
-  const [categories, setCategories] =
-    useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-
-  // GET SPEAKERS
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/pembicara`)
-      .then((res) => res.json())
-      .then((data) => {
-        setSpeakers(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   // GET CATEGORIES
   useEffect(() => {
@@ -66,32 +44,33 @@ export default function EventCreate() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/events`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const payload = {
+        name: data.name,
+        categoryId: Number(data.categoryId),
+        location: data.location,
+        dateEvent: data.dateEvent,
+        description: data.description,
+      };
+
+      const response = await fetch(`${API_BASE_URL}/events`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
       const result = await response.json();
 
       if (!response.ok) {
-        alert(result.message);
-
+        alert(result.message || "Gagal membuat event");
         return;
       }
 
       alert("Event berhasil dibuat!");
-
       navigate("/dashboard/event");
     } catch (error) {
       console.log(error);
-
       alert("Gagal menyimpan event");
     }
   };
@@ -107,22 +86,20 @@ export default function EventCreate() {
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4"
         >
-          {/* EVENT NAME */}
-          <InputText
+          <InputText<FormData>
             label="Nama Event"
-            name="eventName"
+            name="name"
             register={register}
-            error={errors.eventName?.message}
+            error={errors.name?.message}
           />
 
-          {/* CATEGORY DROPDOWN */}
           <div>
             <label className="block text-sm mb-1">
               Category
             </label>
 
             <select
-              {...register("category")}
+              {...register("categoryId")}
               className="w-full border rounded px-3 py-2"
             >
               <option value="">
@@ -132,7 +109,7 @@ export default function EventCreate() {
               {categories.map((category) => (
                 <option
                   key={category.id}
-                  value={category.name}
+                  value={category.id}
                 >
                   {category.name}
                 </option>
@@ -140,54 +117,35 @@ export default function EventCreate() {
             </select>
           </div>
 
-          {/* SPEAKER DROPDOWN */}
+          <InputText<FormData>
+            label="Lokasi"
+            name="location"
+            register={register}
+            error={errors.location?.message}
+          />
+
           <div>
             <label className="block text-sm mb-1">
-              Pembicara
-            </label>
-
-            <select
-              {...register("speaker")}
-              className="w-full border rounded px-3 py-2"
-            >
-              <option value="">
-                -- Pilih Pembicara --
-              </option>
-
-              {speakers.map((speaker) => (
-                <option
-                  key={speaker.id}
-                  value={speaker.name}
-                >
-                  {speaker.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* DATE */}
-          <div>
-            <label className="block text-sm mb-1">
-              Tanggal
+              Tanggal Event
             </label>
 
             <input
               type="date"
-              {...register("date")}
+              {...register("dateEvent")}
               className="w-full border rounded px-3 py-2"
             />
           </div>
 
-          {/* TIME */}
           <div>
             <label className="block text-sm mb-1">
-              Jam
+              Deskripsi
             </label>
 
-            <input
-              type="time"
-              {...register("time")}
+            <textarea
+              {...register("description")}
               className="w-full border rounded px-3 py-2"
+              rows={4}
+              placeholder="Contoh: Pembicara Rafa, workshop React dasar"
             />
           </div>
 
